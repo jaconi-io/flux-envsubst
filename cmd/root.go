@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"io/ioutil"
 
 	"github.com/jaconi-io/flux-envsubst/envsubst"
@@ -33,6 +34,15 @@ var rootCmd = &cobra.Command{
 			err = yaml.UnmarshalStrict(i, res)
 			if err != nil {
 				return err
+			}
+
+			// For secrets: filter encrypted ones.
+			if res.GetKind() == "Secret" {
+				sops := res.Field("sops")
+				if sops != nil {
+					fmt.Fprintf(cmd.OutOrStderr(), "skipping sops encrypted secret %s/%s\n", res.GetNamespace(), res.GetName())
+					continue
+				}
 			}
 
 			res, err = envsubst.SubstituteVariables(cmd.Context(), res)
