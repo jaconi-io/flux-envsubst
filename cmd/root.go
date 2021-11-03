@@ -9,6 +9,9 @@ import (
 	"github.com/spf13/viper"
 	"sigs.k8s.io/kustomize/api/resource"
 	"sigs.k8s.io/yaml"
+
+	// Load environment variables from .env files.
+	_ "github.com/joho/godotenv/autoload"
 )
 
 var rootCmd = &cobra.Command{
