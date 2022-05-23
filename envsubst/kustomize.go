@@ -22,18 +22,43 @@ func SubstituteVariables(ctx context.Context, res *resource.Resource) (*resource
 
 	output, err := StrictEvalEnv(string(resData))
 	if err != nil {
-		return nil, fmt.Errorf("variable substitution failed: %w", err)
+		return nil, fmt.Errorf("variable substitution failed for %s: %w", id(res), err)
 	}
 
 	jsonData, err := yaml.YAMLToJSON([]byte(output))
 	if err != nil {
-		return nil, fmt.Errorf("converstion to JSON failed: %w", err)
+		return nil, fmt.Errorf("conversion to JSON failed for %s: %w", id(res), err)
 	}
 
 	err = res.UnmarshalJSON(jsonData)
 	if err != nil {
-		return nil, fmt.Errorf("convertion from JSON failed: %w", err)
+		return nil, fmt.Errorf("conversion from JSON failed for %s: %w", id(res), err)
 	}
 
 	return res, nil
+}
+
+func id(res *resource.Resource) string {
+	kind := res.GetKind()
+	namespace := res.GetNamespace()
+	name := res.GetName()
+
+	id := "unknown resource"
+	if kind == "" && name == "" && namespace != "" {
+		id += fmt.Sprintf(" in namespace %s", namespace)
+	} else if kind == "" && name != "" && namespace == "" {
+		id += fmt.Sprintf(" named %s", name)
+	} else if kind == "" && name != "" && namespace != "" {
+		id = fmt.Sprintf("resource %s/%s", namespace, name)
+	} else if name == "" && namespace == "" {
+		id = fmt.Sprintf("unknown %s", kind)
+	} else if name == "" && namespace != "" {
+		id = fmt.Sprintf("%s named %s", kind, name)
+	} else if name != "" && namespace == "" {
+		id = fmt.Sprintf("%s in namespace %s", kind, namespace)
+	} else {
+		id = fmt.Sprintf("%s %s/%s", kind, namespace, name)
+	}
+
+	return id
 }
