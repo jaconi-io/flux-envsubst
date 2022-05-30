@@ -71,3 +71,5 @@ jobs:
           yarn add semantic-release
           yarn add @semantic-release/exec
           yarn run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
