@@ -42,23 +42,5 @@ func id(res *resource.Resource) string {
 	kind := res.GetKind()
 	namespace := res.GetNamespace()
 	name := res.GetName()
-
-	id := "unknown resource"
-	if kind == "" && name == "" && namespace != "" {
-		id += fmt.Sprintf(" in namespace %s", namespace)
-	} else if kind == "" && name != "" && namespace == "" {
-		id += fmt.Sprintf(" named %s", name)
-	} else if kind == "" && name != "" && namespace != "" {
-		id = fmt.Sprintf("resource %s/%s", namespace, name)
-	} else if name == "" && namespace == "" {
-		id = fmt.Sprintf("unknown %s", kind)
-	} else if name == "" && namespace != "" {
-		id = fmt.Sprintf("%s named %s", kind, name)
-	} else if name != "" && namespace == "" {
-		id = fmt.Sprintf("%s in namespace %s", kind, namespace)
-	} else {
-		id = fmt.Sprintf("%s %s/%s", kind, namespace, name)
-	}
-
-	return id
+	return fmt.Sprintf("%s %s/%s", kind, namespace, name)
 }
