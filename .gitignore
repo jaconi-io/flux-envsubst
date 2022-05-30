@@ -1,3 +1,5 @@
-flux-envsubst
-
 dist/
+node_modules/
+flux-envsubst
+package.json
+yarn.lock
