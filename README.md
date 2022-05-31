@@ -10,9 +10,7 @@ substitutions locally. However, envsubst lacks support for
 ## Installation
 
 ```
-git clone git@github.com:jaconi-io/flux-envsubst.git
-cd flux-envsubst 
-go install
+go install github.com/jaconi-io/flux-envsubst@latest
 ```
 
 ## Usage
