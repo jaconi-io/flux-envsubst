@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: Automatic merge of dependency updates
+    conditions:
+      - author=dependabot[bot]
+      - check-success=lint
+      - check-success=test
+    actions:
+      merge:
+        method: merge
