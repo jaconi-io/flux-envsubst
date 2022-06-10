@@ -14,6 +14,8 @@ substitutions locally. However, envsubst lacks support for
 * the `kustomize.toolkit.fluxcd.io/substitute: disabled` annotation / label
 * [SOPS](https://github.com/mozilla/sops)
 
+See our [blog post](https://jaconi.io/blog/introducing_flux-envsubst/) for additional details.
+
 ## Installation
 
 ```
