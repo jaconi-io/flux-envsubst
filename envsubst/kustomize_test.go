@@ -28,6 +28,16 @@ func TestSubstituteVariables(t *testing.T) {
 	assert.Equal(t, "foo: bar\n", string(rawOut))
 }
 
+func TestSubstituteVariables_MissingVariable(t *testing.T) {
+	raw := []byte("foo: ${foo}")
+	res := &resource.Resource{}
+	err := yaml.Unmarshal(raw, res)
+	assert.NoError(t, err)
+
+	_, err = SubstituteVariables(context.TODO(), res)
+	assert.EqualError(t, err, "variable substitution failed for  /: variable \"foo\" is not set")
+}
+
 func TestSubstituteVariablesAnnotation(t *testing.T) {
 	reset := tmpEnv("foo", "bar")
 	defer reset()
