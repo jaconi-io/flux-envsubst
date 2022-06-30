@@ -12,3 +12,13 @@ checksum:
   name_template: "checksums.txt"
 snapshot:
   name_template: "{{ incpatch .Version }}-SNAPSHOT"
+brews:
+  - tap:
+      owner: jaconi-io
+      name: homebrew-tap
+    folder: Formula
+    homepage: https://jaconi.io/
+    description: Environment variable substitution for Flux
+    license: MIT
+    test: |
+      system "#{bin}/program --help"
