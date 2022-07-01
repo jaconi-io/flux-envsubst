@@ -96,7 +96,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: formula
-          path: Formula/flux-envsubst.rb
+          path: Formula
 
       - name: Publish
         run: |
