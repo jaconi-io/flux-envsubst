@@ -18,6 +18,14 @@ See our [blog post](https://jaconi.io/blog/introducing_flux-envsubst/) for addit
 
 ## Installation
 
+If you have [Homebrew](https://brew.sh) installed run
+
+```
+brew install jaconi-io/tap/flux-envsubst
+```
+
+If you do not use Homebrew, run
+
 ```
 go install github.com/jaconi-io/flux-envsubst@latest
 ```
