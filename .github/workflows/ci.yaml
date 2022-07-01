@@ -94,6 +94,7 @@ jobs:
           ssh-key: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}
 
       - uses: actions/download-artifact@v3
+        continue-on-error: true
         with:
           name: formula
           path: Formula
@@ -103,5 +104,5 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add Formula
-          git commit -m "Update ${{ github.repository }}"
+          git diff-index --quiet HEAD || git commit -m "Update ${{ github.repository }}"
           git push
