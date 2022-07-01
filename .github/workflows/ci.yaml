@@ -73,3 +73,33 @@ jobs:
           yarn run semantic-release
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: formula
+          path: dist/flux-envsubst.rb
+
+  publish:
+    if: github.event_name == 'push'
+
+    needs:
+      - release
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository_owner }}/homebrew-tap
+          ssh-key: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: formula
+          path: Formula/flux-envsubst.rb
+
+      - name: Publish
+        run: |
+          git add Formula
+          git commit -m "Update ${{ github.repository }}"
+          git push
