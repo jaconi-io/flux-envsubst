@@ -16,5 +16,6 @@ brews:
   - description: Environment variable substitution for Flux
     homepage: https://jaconi.io/
     license: MIT
+    skip_upload: true
     tap:
       name: homebrew-tap
