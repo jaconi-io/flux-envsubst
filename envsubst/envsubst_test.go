@@ -13,8 +13,8 @@ func TestStrictEvalMissingVariable(t *testing.T) {
 		return ""
 	})
 
-	assert.EqualError(t, err, "variable \"foo\" is not set")
-	assert.Equal(t, "", out)
+	assert.NoError(t, err)
+	assert.Equal(t, "Hello !", out)
 }
 
 func TestStrictEval(t *testing.T) {
@@ -29,8 +29,15 @@ func TestStrictEval(t *testing.T) {
 func TestStrictEvalEnvMissingVariable(t *testing.T) {
 	out, err := StrictEvalEnv("Hello ${foo}!")
 
-	assert.EqualError(t, err, "variable \"foo\" is not set")
-	assert.Equal(t, "", out)
+	assert.NoError(t, err)
+	assert.Equal(t, "Hello !", out)
+}
+
+func TestStrictEvalEnvMissingVariableWithDefault(t *testing.T) {
+	out, err := StrictEvalEnv("Hello ${foo:=bar}!")
+
+	assert.NoError(t, err)
+	assert.Equal(t, "Hello bar!", out)
 }
 
 func TestStrictEvalEnv(t *testing.T) {
