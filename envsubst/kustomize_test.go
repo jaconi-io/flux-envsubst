@@ -34,8 +34,43 @@ func TestSubstituteVariables_MissingVariable(t *testing.T) {
 	err := yaml.Unmarshal(raw, res)
 	assert.NoError(t, err)
 
-	_, err = SubstituteVariables(context.TODO(), res)
-	assert.EqualError(t, err, "variable substitution failed for  /: variable \"foo\" is not set")
+	out, err := SubstituteVariables(context.TODO(), res)
+	assert.NoError(t, err)
+
+	rawOut, err := out.AsYAML()
+	assert.NoError(t, err)
+	assert.Equal(t, "foo: null\n", string(rawOut))
+}
+
+func TestSubstituteVariables_WithDefault(t *testing.T) {
+	reset := tmpEnv("foo", "bar")
+	defer reset()
+
+	raw := []byte("foo: ${foo:-baz}")
+	res := &resource.Resource{}
+	err := yaml.Unmarshal(raw, res)
+	assert.NoError(t, err)
+
+	out, err := SubstituteVariables(context.TODO(), res)
+	assert.NoError(t, err)
+
+	rawOut, err := out.AsYAML()
+	assert.NoError(t, err)
+	assert.Equal(t, "foo: bar\n", string(rawOut))
+}
+
+func TestSubstituteVariables_MissingVariableWithDefault(t *testing.T) {
+	raw := []byte("foo: ${foo:-bar}")
+	res := &resource.Resource{}
+	err := yaml.Unmarshal(raw, res)
+	assert.NoError(t, err)
+
+	out, err := SubstituteVariables(context.TODO(), res)
+	assert.NoError(t, err)
+
+	rawOut, err := out.AsYAML()
+	assert.NoError(t, err)
+	assert.Equal(t, "foo: bar\n", string(rawOut))
 }
 
 func TestSubstituteVariablesAnnotation(t *testing.T) {

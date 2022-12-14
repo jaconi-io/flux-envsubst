@@ -3,7 +3,7 @@ module github.com/jaconi-io/flux-envsubst
 go 1.18
 
 require (
-	github.com/drone/envsubst v1.0.3
+	github.com/drone/envsubst/v2 v2.0.0-20210730161058-179042472c46
 	github.com/joho/godotenv v1.4.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.14.0
