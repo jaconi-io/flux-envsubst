@@ -62,7 +62,7 @@ jobs:
         with:
           node-version: "16"
 
-      - uses: goreleaser/goreleaser-action@v3
+      - uses: goreleaser/goreleaser-action@v4
         with:
           install-only: true
 
