@@ -9,7 +9,7 @@ require (
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.1
 	gopkg.in/yaml.v3 v3.0.1
-	sigs.k8s.io/kustomize/api v0.13.0
+	sigs.k8s.io/kustomize/api v0.13.1
 	sigs.k8s.io/yaml v1.3.0
 )
 
