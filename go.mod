@@ -9,7 +9,7 @@ require (
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.2
 	gopkg.in/yaml.v3 v3.0.1
-	sigs.k8s.io/kustomize/api v0.13.1
+	sigs.k8s.io/kustomize/api v0.13.2
 	sigs.k8s.io/yaml v1.3.0
 )
 
@@ -45,5 +45,5 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20230109183929-3758b55a6596 // indirect
-	sigs.k8s.io/kustomize/kyaml v0.14.0 // indirect
+	sigs.k8s.io/kustomize/kyaml v0.14.1 // indirect
 )
