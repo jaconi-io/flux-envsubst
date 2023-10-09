@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 
 	"github.com/jaconi-io/flux-envsubst/envsubst"
 
@@ -19,7 +19,7 @@ var rootCmd = &cobra.Command{
 	Use:   "flux-envsubst",
 	Short: "envsubst for Flux",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		stdin, err := ioutil.ReadAll(cmd.InOrStdin())
+		stdin, err := io.ReadAll(cmd.InOrStdin())
 		if err != nil {
 			return err
 		}
