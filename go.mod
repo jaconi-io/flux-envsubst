@@ -1,6 +1,6 @@
 module github.com/jaconi-io/flux-envsubst
 
-go 1.18
+go 1.21
 
 require (
 	github.com/drone/envsubst/v2 v2.0.0-20210730161058-179042472c46
