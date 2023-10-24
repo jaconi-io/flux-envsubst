@@ -17,5 +17,5 @@ brews:
     homepage: https://jaconi.io/
     license: MIT
     skip_upload: true
-    tap:
+    repository:
       name: homebrew-tap
