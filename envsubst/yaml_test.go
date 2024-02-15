@@ -1,6 +1,8 @@
 package envsubst_test
 
 import (
+	"errors"
+	"strings"
 	"testing"
 
 	. "github.com/jaconi-io/flux-envsubst/envsubst"
@@ -11,9 +13,20 @@ import (
 func TestSplitYAMLInvalid(t *testing.T) {
 	yaml := "foo: :"
 
-	out, err := SplitYAML([]byte(yaml))
+	err := SplitYAML(strings.NewReader(yaml), func(b []byte) error {
+		assert.Fail(t, "unexpected callback invocation")
+		return nil
+	})
 	assert.EqualError(t, err, "yaml: mapping values are not allowed in this context")
-	assert.Len(t, out, 0)
+}
+
+func TestSplitYAMLCallbackError(t *testing.T) {
+	yaml := "foo: bar"
+
+	err := SplitYAML(strings.NewReader(yaml), func(b []byte) error {
+		return errors.New("expected")
+	})
+	assert.EqualError(t, err, "expected")
 }
 
 func TestSplitYAML(t *testing.T) {
@@ -22,8 +35,19 @@ func TestSplitYAML(t *testing.T) {
 foo: baz
 `
 
-	out, err := SplitYAML([]byte(yaml))
+	i := 0
+	err := SplitYAML(strings.NewReader(yaml), func(b []byte) error {
+		switch i {
+		case 0:
+			assert.Equal(t, "foo: bar\n", string(b))
+		case 1:
+			assert.Equal(t, "foo: baz\n", string(b))
+		default:
+			assert.Fail(t, "too many callback invocations")
+		}
+
+		i++
+		return nil
+	})
 	assert.NoError(t, err)
-	assert.Equal(t, "foo: bar\n", string(out[0]))
-	assert.Equal(t, "foo: baz\n", string(out[1]))
 }

@@ -1,17 +1,15 @@
 package envsubst
 
 import (
-	"bytes"
 	"io"
 
 	"gopkg.in/yaml.v3"
 )
 
 // SplitYAML into separate documents.
-func SplitYAML(raw []byte) ([][]byte, error) {
-	decoder := yaml.NewDecoder(bytes.NewReader(raw))
+func SplitYAML(in io.Reader, callback func([]byte) error) error {
+	decoder := yaml.NewDecoder(in)
 
-	var rawDocuments [][]byte
 	for {
 		var document interface{}
 		err := decoder.Decode(&document)
@@ -20,16 +18,19 @@ func SplitYAML(raw []byte) ([][]byte, error) {
 		}
 
 		if err != nil {
-			return nil, err
+			return err
 		}
 
 		rawDocument, err := yaml.Marshal(document)
 		if err != nil {
-			return nil, err
+			return err
 		}
 
-		rawDocuments = append(rawDocuments, rawDocument)
+		err = callback(rawDocument)
+		if err != nil {
+			return err
+		}
 	}
 
-	return rawDocuments, nil
+	return nil
 }
