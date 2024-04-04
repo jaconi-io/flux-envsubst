@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
-[![go report](https://goreportcard.com/badge/github.com/jaconi-io/flux-envsubst)](https://goreportcard.com/report/github.com/jaconi-io/flux-envsubst)
+[![go report](https://goreportcard.com/badge/github.com/jaconi-io/flux-envsubst/v4)](https://goreportcard.com/report/github.com/jaconi-io/flux-envsubst/v4)
 ![CI](https://github.com/jaconi-io/flux-envsubst/actions/workflows/ci.yaml/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/jaconi-io/flux-envsubst.svg)](https://github.com/jaconi-io/flux-envsubst/releases/)
 
