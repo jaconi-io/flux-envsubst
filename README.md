@@ -27,7 +27,7 @@ brew install jaconi-io/tap/flux-envsubst
 If you do not use Homebrew, run
 
 ```
-go install github.com/jaconi-io/flux-envsubst@latest
+go install github.com/jaconi-io/flux-envsubst/v4@latest
 ```
 
 ## Usage
