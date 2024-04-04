@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/jaconi-io/flux-envsubst/envsubst"
+	. "github.com/jaconi-io/flux-envsubst/v3/envsubst"
 
 	"github.com/stretchr/testify/assert"
 )
