@@ -1,4 +1,4 @@
-module github.com/jaconi-io/flux-envsubst
+module github.com/jaconi-io/flux-envsubst/v3
 
 go 1.21
 

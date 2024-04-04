@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	. "github.com/jaconi-io/flux-envsubst/envsubst"
+	. "github.com/jaconi-io/flux-envsubst/v3/envsubst"
 	"sigs.k8s.io/kustomize/api/resource"
 	"sigs.k8s.io/yaml"
 
