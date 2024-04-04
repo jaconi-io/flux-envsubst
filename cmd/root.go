@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/jaconi-io/flux-envsubst/v3/envsubst"
+	"github.com/jaconi-io/flux-envsubst/v4/envsubst"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
