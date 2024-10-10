@@ -6,7 +6,6 @@ import (
 	"github.com/jaconi-io/flux-envsubst/v4/envsubst"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"sigs.k8s.io/kustomize/api/resource"
 	"sigs.k8s.io/yaml"
 
@@ -62,8 +61,4 @@ var rootCmd = &cobra.Command{
 
 func Execute() {
 	cobra.CheckErr(rootCmd.Execute())
-}
-
-func init() {
-	cobra.OnInitialize(viper.AutomaticEnv)
 }
