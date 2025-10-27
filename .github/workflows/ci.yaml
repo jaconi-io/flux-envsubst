@@ -93,7 +93,7 @@ jobs:
           repository: ${{ github.repository_owner }}/homebrew-tap
           ssh-key: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         continue-on-error: true
         with:
           name: formula
